@@ -1,5 +1,4 @@
-﻿
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Events;
 using Identity.Api.Services;
 using MassTransit;

@@ -9,7 +9,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.2" />
+    <PackageReference Include="MassTransit" Version="5.1.4" />
+    <PackageReference Include="MassTransit.Autofac" Version="5.1.4" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="5.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="StackExchange.Redis" Version="1.2.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Foundation\Events\Events.csproj" />
   </ItemGroup>
 
 </Project>

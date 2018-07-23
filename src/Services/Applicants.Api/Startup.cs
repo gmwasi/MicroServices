@@ -46,7 +46,7 @@ namespace Applicants.Api
                         });
 
                         // https://stackoverflow.com/questions/39573721/disable-round-robin-pattern-and-use-fanout-on-masstransit
-                        cfg.ReceiveEndpoint(host, "dotnetgigs" + Guid.NewGuid().ToString(), e =>
+                        cfg.ReceiveEndpoint(host, "microservices" + Guid.NewGuid().ToString(), e =>
                         {
                             e.LoadFrom(context);
                             //e.Consumer<ApplicantAppliedConsumer>();

@@ -1,6 +1,4 @@
-﻿ 
- 
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Identity.Api.Models;
 using Identity.Api.Services;
 using Microsoft.AspNetCore.Mvc;
