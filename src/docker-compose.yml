@@ -2,6 +2,21 @@ version: '3'
 
 services:
 
+  webmvc:
+    image: web 
+    build:
+      context: ./web
+      dockerfile: Dockerfile.debug
+    ports: 
+    - "8080:80"
+    volumes: 
+      - ./web/bin/pub/:/app
+    container_name: web
+    depends_on:
+      - applicants.api
+      - identity.api
+      - jobs.api
+
   applicants.api:
     image: applicants.api
     environment:
@@ -48,5 +63,25 @@ services:
     container_name: identity.api
     depends_on:
       - user.data       
- 
+
+  sql.data:
+    image: mssql-linux
+    build:
+      context: ./Database
+      dockerfile: Dockerfile
+    ports:
+      - "5433:1433"
+    container_name: mssql-linux
+
+  user.data:
+    image: redis  
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+    container_name: rabbitmq
+  
+
+   
  
