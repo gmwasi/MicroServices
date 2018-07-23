@@ -20,7 +20,7 @@ services:
   applicants.api:
     image: applicants.api
     environment:
-      - ConnectionString=Server=sql.data;User=sa;Password=Pass@word;Database=dotnetgigs.applicants;    
+      - ConnectionString=Server=sql.data;User=sa;Password=P@ss@w0rd;Database=microservices.applicants;    
     build:
       context: ./services/applicants.api
       dockerfile: Dockerfile.debug
@@ -36,7 +36,7 @@ services:
   jobs.api:
     image: jobs.api
     environment:
-      - ConnectionString=Server=sql.data;User=sa;Password=Pass@word;Database=dotnetgigs.jobs;    
+      - ConnectionString=Server=sql.data;User=sa;Password=P@ss@w0rd;Database=microservices.jobs;    
     build:
       context: ./services/jobs.api
       dockerfile: Dockerfile.debug
