@@ -1,14 +1,12 @@
-version: '3'
-
+version: '3.4'
 services:
-
-  webmvc:
-    image: web 
+  web:
+    image: ${DOCKER_REGISTRY}web
     build:
-      context: ./web
-      dockerfile: Dockerfile.debug
-    ports: 
-    - "8080:80"
+      context: .
+      dockerfile: Web/Dockerfile
+    ports:
+      - "8080:80"
     volumes: 
       - ./web/bin/pub/:/app
     container_name: web
@@ -18,14 +16,12 @@ services:
       - jobs.api
 
   applicants.api:
-    image: applicants.api
-    environment:
-      - ConnectionString=Server=sql.data;User=sa;Password=P@ss@w0rd;Database=microservices.applicants;    
+    image: ${DOCKER_REGISTRY}applicantsapi
     build:
       context: ./services/applicants.api
-      dockerfile: Dockerfile.debug
+      dockerfile: Dockerfile
     ports: 
-    - "8081:80"
+      - "8081:80"
     volumes: 
       - ./services/applicants.api/bin/pub/:/app
     container_name: applicants.api
@@ -34,14 +30,12 @@ services:
       - rabbitmq
 
   jobs.api:
-    image: jobs.api
-    environment:
-      - ConnectionString=Server=sql.data;User=sa;Password=P@ss@w0rd;Database=microservices.jobs;    
+    image: ${DOCKER_REGISTRY}jobsapi
     build:
       context: ./services/jobs.api
-      dockerfile: Dockerfile.debug
+      dockerfile: Dockerfile
     ports: 
-    - "8083:80"
+      - "8083:80"
     volumes: 
       - ./services/jobs.api/bin/pub/:/app
     container_name: jobs.api
@@ -50,19 +44,17 @@ services:
       - rabbitmq
 
   identity.api:
-    image: identity.api
-    environment:
-      - RedisHost=user.data:6379
+    image: ${DOCKER_REGISTRY}identityapi
     build:
       context: ./services/identity.api
-      dockerfile: Dockerfile.debug
+      dockerfile: Dockerfile
     ports: 
-    - "8084:80"
+      - "8084:80"
     volumes: 
       - ./services/identity.api/bin/pub/:/app
     container_name: identity.api
     depends_on:
-      - user.data       
+      - user.data 
 
   sql.data:
     image: mssql-linux
@@ -81,7 +73,3 @@ services:
     ports:
       - "15672:15672"
     container_name: rabbitmq
-  
-
-   
- 

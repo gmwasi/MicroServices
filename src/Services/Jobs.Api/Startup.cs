@@ -27,7 +27,7 @@ namespace Jobs.Api
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddScoped<IJobRepository>(c => new JobRepository(Configuration["ConnectionString"]));
+            services.AddScoped<IJobRepository>(c => new JobRepository(Configuration["ConnectionStrings:jobs"]));
 
             var builder = new ContainerBuilder();
             builder.Register(c =>

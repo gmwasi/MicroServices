@@ -28,7 +28,7 @@ namespace Applicants.Api
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddScoped<IApplicantRepository>(c => new ApplicantRepository(Configuration["ConnectionString"]));
+            services.AddScoped<IApplicantRepository>(c => new ApplicantRepository(Configuration["ConnectionStrings:applicants"]));
 
             var builder = new ContainerBuilder();
 
